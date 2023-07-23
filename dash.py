@@ -1,3 +1,5 @@
+import panel as pn  # GUI
+pn.extension()
 panels = [] # collect display
 
 context = [ {'role':'system', 'content':"You are Service Assistant"} ]
