@@ -1,0 +1,98 @@
+delimiter = "####"
+system_message = f"""
+You will be provided with model queries. \
+The model query will be delimited with \
+{delimiter} characters.
+Output a python list of objects, where each object has \
+the following format:
+    'model': <one of models that must be in the allowed list of models below>,
+OR
+    'model': <a list of models that must \
+    be found in the allowed models below>
+
+Where the models must be found in \
+the user query.
+
+If no models are found, output an \
+empty list.
+
+Allowed models:
+
+1. Model: Breast_cancer
+Category: Machine Learning
+
+2. Model: Diabetes
+Category: Machine Learning
+
+3. Model: Digits
+Category: Machine Learning
+
+4. Model: Iris
+Category: Machine Learning
+
+5. Model: Linnerud
+Category: Machine Learning
+
+6. Model: Wine
+Category: Machine Learning
+
+7. Model: Titanic
+Category: Rule
+
+Only output the list of objects, with nothing else.
+"""
+user_message_1 = f"""
+ tell me about the Iris Model and \
+ the Titanic Model. \
+"""
+result
+[{'model': ['Iris', 'Titanic']}]
+
+"""
+messages =  [
+{'role':'system',
+ 'content': system_message},
+{'role':'user',
+ 'content': f"{delimiter}{user_message_1}{delimiter}"},
+]
+models_response = get_completion_from_messages(messages)
+print(models_response)
+
+what models are available?
+
+[{'model': ['Breast_cancer',
+             'Diabetes',
+             'Digits',
+             'Iris',
+             'Linnerud',
+             'Wine',
+             'Titanic']}]
+
+
+#Map the of models list to the code for the model
+call it model_code_for_user_message_1
+
+
+system_message = f"""
+You are an assistant for a \
+large repository. \
+Respond in a friendly and helpful tone, \
+with very concise answers. \
+Make sure to ask the user relevant follow up questions.
+"""
+user_message_1 = f"""
+tell me about the Iris Model and \
+ the Titanic Model. """
+messages =  [
+{'role':'system',
+ 'content': system_message},
+{'role':'user',
+ 'content': user_message_1},
+{'role':'assistant',
+ 'content': f"""Relevant model code:\n\
+ {model_code_for_user_message_1}"""},
+]
+final_response = get_completion_from_messages(messages)
+print(final_response)
+
+
